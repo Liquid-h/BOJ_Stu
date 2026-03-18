@@ -1,0 +1,72 @@
+#include<iostream>
+#include<string>
+#include<map>
+#include<stack>
+using namespace std;
+
+enum Funct
+{
+	PUSH, POP, TOP, SIZE, EMPTY
+};
+
+int main(void)
+{
+	cin.tie(NULL);
+	ios::sync_with_stdio(false);
+
+	map<string, Funct> funcMap;
+	funcMap["push"] = PUSH;
+	funcMap["pop"] = POP;
+	funcMap["top"] = TOP;
+	funcMap["size"] = SIZE;
+	funcMap["empty"] = EMPTY;
+
+
+	int testCase;
+	cin >> testCase;
+
+	stack<int> s;
+
+	for (size_t i = 0; i < testCase; i++)
+	{
+		string input;
+		cin >> input;
+
+		switch (funcMap[input])
+		{
+		case PUSH:
+		{
+			int num;
+			cin >> num;
+			s.push(num);
+			break;
+		}
+		case POP:
+			if (s.empty())
+				cout << -1 << "\n";
+			else
+			{
+				cout << s.top() << "\n";
+				s.pop();
+			}
+			break;
+		case TOP:
+			if (s.empty())
+				cout << -1 << "\n";
+			else
+				cout << s.top() << "\n";
+			break;
+		case SIZE:
+			cout << s.size() << "\n";
+			break;
+		case EMPTY:
+			if (s.empty())
+				cout << 1 << "\n";
+			else
+				cout << 0 << "\n";
+			break;
+		}
+	}
+
+	return 0;
+}
